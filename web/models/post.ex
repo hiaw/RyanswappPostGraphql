@@ -14,7 +14,7 @@ defmodule RyanswappPostGraphql.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title])
-    |> validate_required([:title])
+    |> cast(params, [:title, :body, :user_id])
+    |> validate_required([:title, :body, :user_id])
   end
 end
