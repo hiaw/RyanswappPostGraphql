@@ -25,3 +25,12 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"], # optional
+verify_module: Guardian.JWT,  # optional
+issuer: "RyanswappPostGraphql",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+secret_key: "Q/pRXuJQoZblGk4AIOHhMX0AkzuUpBS91hQVlO06PqrtRd/iAobc3CdBkMPDVYgc",
+  serializer: RyanswappPostGraphql.GuardianSerializer
