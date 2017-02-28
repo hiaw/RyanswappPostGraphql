@@ -6,7 +6,7 @@ defmodule RyanswappPostGraphql.Schema.Types do
     field :id, :id
     field :name, :string
     field :email, :string
-    field :post, list_of(:post), resolve: assoc(:posts)
+    field :posts, list_of(:post), resolve: assoc(:posts)
   end
 
   object :post do

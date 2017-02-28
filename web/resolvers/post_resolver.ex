@@ -15,7 +15,7 @@ defmodule RyanswappPostGraphql.PostResolver do
   def update(%{id: id, post: post_params}, _info) do
     Repo.get!(Post, id)
     |> Post.changeset(post_params)
-    |> Repo.insert
+    |> Repo.update
   end
 
   def delete(%{id: id}, _info) do
