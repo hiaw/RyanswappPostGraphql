@@ -1,9 +1,19 @@
+import Ecto.Query, only: [where: 2]
+
 defmodule RyanswappPostGraphql.PostResolver do
   alias RyanswappPostGraphql.Repo
   alias RyanswappPostGraphql.Post
 
+  def all(_args, %{context: %{current_user: %{id: id}}}) do
+    posts = Post
+    |> where(user_id: ^id)
+    |> Repo.all
+
+    {:ok, posts}
+  end
+
   def all(_args, _info) do
-    {:ok, Repo.all(Post)}
+    {:error, "Not Authorized"}
   end
 
   def create(args, _info) do
