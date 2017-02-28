@@ -19,6 +19,12 @@ defmodule RyanswappPostGraphql.Router do
     get "/", PageController, :index
   end
 
+  forward "/api", Absinthe.Plug,
+    schema: RyanswappPostGraphql.Schema
+
+  forward "/graphiql", Absinthe.Plug.GraphiQL,
+    schema: RyanswappPostGraphql.Schema
+
   # Other scopes may use custom stacks.
   # scope "/api", RyanswappPostGraphql do
   #   pipe_through :api

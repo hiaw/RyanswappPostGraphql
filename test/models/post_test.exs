@@ -3,7 +3,7 @@ defmodule RyanswappPostGraphql.PostTest do
 
   alias RyanswappPostGraphql.Post
 
-  @valid_attrs %{title: "some content"}
+  @valid_attrs %{body: "some body", title: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
