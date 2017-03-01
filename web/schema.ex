@@ -1,6 +1,16 @@
 defmodule RyanswappPostGraphql.Schema do
   use Absinthe.Schema
+  use Absinthe.Relay.Schema
   import_types RyanswappPostGraphql.Schema.Types
+
+  node interface do
+    resolve_type fn
+      %RyanswappPostGraphql.User{}, _ -> :user
+      %RyanswappPostGraphql.Post{}, _ -> :post
+      _, _ -> nil
+    end
+  end
+
 
   query do
     field :posts, list_of(:post) do
@@ -19,6 +29,15 @@ defmodule RyanswappPostGraphql.Schema do
     field :user, type: :user do
       arg :id, non_null(:integer)
       resolve &RyanswappPostGraphql.UserResolver.find/2
+    end
+
+    node field do
+      resolve fn
+        %{type: :user, id: id}, _ ->
+          RyanswappPostGraphql.UserResolver.find(%{id: id}, %{})
+        %{type: :post, id: id}, _ ->
+          RyanswappPostGraphql.PostResolver.find(%{id: id}, %{})
+      end
     end
   end
 
