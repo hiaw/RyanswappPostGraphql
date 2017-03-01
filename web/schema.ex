@@ -29,6 +29,13 @@ defmodule RyanswappPostGraphql.Schema do
   end
 
   mutation do
+    field :login, type: :session do
+      arg :email, non_null(:string)
+      arg :password, non_null(:string)
+
+      resolve &RyanswappPostGraphql.UserResolver.login/2
+    end
+
     field :update_user, type: :user do
       arg :id, non_null(:integer)
       arg :user, :update_user_params
