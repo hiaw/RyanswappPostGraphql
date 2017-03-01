@@ -7,6 +7,10 @@ defmodule RyanswappPostGraphql.Schema do
       resolve &RyanswappPostGraphql.PostResolver.all/2
     end
 
+    field :post, :post do
+      resolve &RyanswappPostGraphql.PostResolver.find/2
+    end
+
     field :users, list_of(:user) do
       resolve &RyanswappPostGraphql.UserResolver.all/2
     end

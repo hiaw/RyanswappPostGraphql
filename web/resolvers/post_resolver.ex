@@ -15,6 +15,13 @@ defmodule RyanswappPostGraphql.PostResolver do
   def all(_args, _info) do
     {:error, "Not Authorized"}
   end
+  
+  def find(%{id: id}, _info) do
+    case Repo.get(Post, id) do
+      nil -> {:error, "Post id #{id} not found"}
+      post -> {:ok, post}
+    end
+  end
 
   def create(args, _info) do
     %Post{}
