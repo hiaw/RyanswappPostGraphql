@@ -8,6 +8,7 @@ defmodule RyanswappPostGraphql.Schema do
     end
 
     field :post, :post do
+      arg :id, non_null(:integer)
       resolve &RyanswappPostGraphql.PostResolver.find/2
     end
 
@@ -16,6 +17,7 @@ defmodule RyanswappPostGraphql.Schema do
     end
 
     field :user, type: :user do
+      arg :id, non_null(:integer)
       resolve &RyanswappPostGraphql.UserResolver.find/2
     end
   end
