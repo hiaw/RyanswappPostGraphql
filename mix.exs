@@ -40,6 +40,7 @@ defmodule RyanswappPostGraphql.Mixfile do
      {:cowboy, "~> 1.0"},
      {:absinthe, "~> 1.2"},
      {:absinthe_plug, "~> 1.2"},
+     {:absinthe_relay, "~> 1.2"},
      {:absinthe_ecto, git: "https://github.com/absinthe-graphql/absinthe_ecto.git"},
      {:poison, "~> 2.1"},
      {:faker, "~> 0.7.0"},
