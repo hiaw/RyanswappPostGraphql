@@ -11,7 +11,6 @@ defmodule RyanswappPostGraphql.Schema do
     end
   end
 
-
   query do
     field :posts, list_of(:post) do
       resolve &RyanswappPostGraphql.PostResolver.all/2
